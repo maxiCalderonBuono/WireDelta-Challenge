@@ -1,5 +1,5 @@
 import { Box, Divider, Flex, Select, Spacer } from "@chakra-ui/react";
-import { SearchInput } from "../atoms/SearchInput";
+import { SearchInput } from "../index";
 
 export const NavBar = () => {
   return (
