@@ -7,6 +7,8 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
+import { Link as RouterLink } from "react-router-dom";
+
 import { colorSchema } from "../../theme";
 import { SinglePokemon } from "../../interfaces";
 import "animate.css";
@@ -24,7 +26,7 @@ export const Card = ({ pokemon }: CardState) => {
     <Box
       as="div"
       _hover={{ transform: "scale(1.5)" }}
-      minH="320px"
+      minH="340px"
       w={{ base: "100%", md: "100%", lg: "fit-content" }}
       bg={bg}
       borderRadius="lg"
@@ -85,7 +87,7 @@ export const Card = ({ pokemon }: CardState) => {
           </Box>
         </Box>
       </Box>
-      <Box fontSize="8px" py="2" px="6" w="100%">
+      <Box fontSize="8px" py="2" px="6" w="100%" minH="80px">
         <Box display="flex" justifyContent="space-between">
           <Box as="p" fontWeight="bold">
             Height
@@ -111,9 +113,15 @@ export const Card = ({ pokemon }: CardState) => {
         </Box>
       </Box>
       <Divider />
-      <L as={"a"} textDecoration="none" fontSize="10px" href="/">
+
+      <Link
+        fontSize="xs"
+        textDecorationColor="none"
+        as={RouterLink}
+        to={`/pokemon/${pokemon.id}`}
+      >
         See more details
-      </L>
+      </Link>
     </Box>
   );
 };

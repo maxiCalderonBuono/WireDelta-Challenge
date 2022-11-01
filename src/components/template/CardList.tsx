@@ -7,12 +7,6 @@ import { sortAllPokemons } from "../../helpers/sortAllPokemons";
 
 import "animate.css";
 
-interface CardListState {
-  pokemons: SinglePokemon[];
-  isLoading: boolean;
-  search: string;
-}
-
 export const CardList = () => {
   const { pokemons, isLoading, searchValue, filter } = useAppSelector(
     (state) => state.pokemons
@@ -27,11 +21,13 @@ export const CardList = () => {
       className="animate__animated animate__fadeIn"
       px={{ base: "10", md: "20", lg: "32" }}
     >
-      {sortAllPokemons(pokemons, searchValue, filter).map((pokemon) => (
-        <Box key={pokemon.id}>
-          <Card pokemon={pokemon} />
-        </Box>
-      ))}
+      {sortAllPokemons(pokemons, searchValue, filter).map(
+        (pokemon: SinglePokemon) => (
+          <Box key={pokemon.id}>
+            <Card pokemon={pokemon} />
+          </Box>
+        )
+      )}
     </Grid>
   );
 };

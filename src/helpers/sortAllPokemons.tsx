@@ -1,7 +1,6 @@
 export const sortAllPokemons = (pokemons, search, filter) => {
   switch (filter) {
     case "A-Z":
-      console.log("holi");
       return pokemons
         .filter((pokemon) => pokemon.name.includes(search.toUpperCase()))
         .sort(function (a, b) {

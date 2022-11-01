@@ -5,8 +5,9 @@ import { SinglePokemon } from "../../../interfaces/allPokemonsResponse";
 export interface PokemonState {
   page: number;
   limit: number;
-  searchValue: string;
-  filter: string;
+  total?: number;
+  searchValue?: string;
+  filter?: string;
   pokemons: SinglePokemon[];
   isLoading?: boolean;
 }
@@ -17,7 +18,8 @@ const initialState: PokemonState = {
   searchValue: "",
   filter: "A-Z",
   pokemons: [],
-  isLoading: false,
+  total: 0,
+  isLoading: true,
 };
 
 export const pokemonSlice = createSlice({

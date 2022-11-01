@@ -1,5 +1,4 @@
 import { pokemonApi } from "../api";
-
 import {
   PokemonsResponse,
   Result,
