@@ -11,6 +11,7 @@ export const Skeleton = () => {
         overflow="hidden"
         display="flex"
         flexDirection="column"
+        alignItems="center"
       >
         <SkeletonCircle size="20" />
         <SkeletonText mt="4" noOfLines={4} spacing="4" />

@@ -1,12 +1,35 @@
+import { useAppDispatch, useAppSelector } from "../../interfaces/hook";
+
 import { Box, Divider, Flex, Select, Spacer } from "@chakra-ui/react";
 import { SearchInput } from "../index";
-
-import { getAllPokemons } from "../../helpers/getPokemonData";
+import { getPokemons, onFilterOptions } from "../../store/slices/pokemon";
+import { useEffect } from "react";
 
 export const NavBar = () => {
+  const dispatch = useAppDispatch();
+
+  const defaultOption = localStorage.getItem("filter") || "A-Z";
+
+  const { page } = useAppSelector((state) => state.pokemons);
+
   const handleShowingChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    getAllPokemons(e.target.value);
+    const limit = Number(e.target.value);
+    dispatch(getPokemons(page, limit));
   };
+
+  const handleFilterCase = ({
+    target,
+  }: React.ChangeEvent<HTMLSelectElement>) => {
+    localStorage.setItem("filter", target.value);
+    dispatch(onFilterOptions(target.value));
+  };
+
+  useEffect(() => {
+    const filter = localStorage.getItem("filter");
+    if (filter) {
+      dispatch(onFilterOptions(filter));
+    }
+  }, []);
 
   return (
     <>
@@ -27,11 +50,17 @@ export const NavBar = () => {
           <SearchInput />
         </Box>
         <Spacer />
-        <Select w="200px" size="sm" rounded="10" defaultValue={"option1"}>
-          <option value="option1">From A-Z</option>
-          <option value="option2">From Z-A</option>
-          <option value="option3">By Height</option>
-          <option value="option3">By Weight</option>
+        <Select
+          w="200px"
+          size="sm"
+          rounded="10"
+          defaultValue={defaultOption}
+          onChange={handleFilterCase}
+        >
+          <option value="A-Z">From A-Z</option>
+          <option value="Z-A">From Z-A</option>
+          <option value="HEIGHT">By Height</option>
+          <option value="WEIGHT">By Weight</option>
         </Select>
       </Flex>
       <Divider />
