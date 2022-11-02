@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import { NavBar, SubMenu } from "../organism";
 import { Controllers } from "../atoms";

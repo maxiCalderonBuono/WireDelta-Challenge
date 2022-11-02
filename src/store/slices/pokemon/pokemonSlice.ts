@@ -3,9 +3,9 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { SinglePokemon } from "../../../interfaces/allPokemonsResponse";
 
 export interface PokemonState {
-  page: number;
-  limit: number;
-  total?: number;
+  page: string;
+  limit: string;
+  total: number;
   searchValue?: string;
   filter?: string;
   pokemons: SinglePokemon[];
@@ -13,10 +13,10 @@ export interface PokemonState {
 }
 
 const initialState: PokemonState = {
-  page: 0,
-  limit: 20,
+  page: "0",
+  limit: "20",
   searchValue: "",
-  filter: "A-Z",
+  filter: "EMPTY",
   pokemons: [],
   total: 0,
   isLoading: true,
@@ -34,6 +34,7 @@ export const pokemonSlice = createSlice({
       state.page = action.payload.page;
       state.limit = action.payload.limit;
       state.pokemons = action.payload.pokemons;
+      state.total = action.payload.total;
     },
 
     onSearchPokemon: (state, { payload }: PayloadAction<string>) => {

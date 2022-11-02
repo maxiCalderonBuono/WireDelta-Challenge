@@ -26,8 +26,8 @@ export const Card = ({ pokemon }: CardState) => {
     <Box
       as="div"
       _hover={{ transform: "scale(1.5)" }}
-      minH="340px"
-      w={{ base: "100%", md: "100%", lg: "fit-content" }}
+      minH="370px"
+      w={{ base: "100%", md: "100%", lg: "100%" }}
       bg={bg}
       borderRadius="lg"
       overflow="hidden"
@@ -87,25 +87,42 @@ export const Card = ({ pokemon }: CardState) => {
           </Box>
         </Box>
       </Box>
-      <Box fontSize="8px" py="2" px="6" w="100%" minH="80px">
-        <Box display="flex" justifyContent="space-between">
+      <Box fontSize="8px" py="2" px="6" w="100%" minH="100px">
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          fontSize={{ base: "14" }}
+        >
           <Box as="p" fontWeight="bold">
             Height
           </Box>
           <Box as="p">{pokemon.height}</Box>
         </Box>
 
-        <Box display="flex" justifyContent="space-between">
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          fontSize={{ base: "14" }}
+        >
           <Box as="p" fontWeight="bold">
             Weight
           </Box>
           <Box as="p">{pokemon.weight}</Box>
         </Box>
-        <Box display="flex" justifyContent="space-between">
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          fontSize={{ base: "14" }}
+        >
           <Box as="p" fontWeight="bold">
             Abilities
           </Box>
-          <Box display="flex" flexDirection="column" alignItems="end">
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="end"
+            fontSize={{ base: "14" }}
+          >
             {abilities.map(({ ability }) => (
               <Box as="p">{ability.name}</Box>
             ))}
@@ -115,7 +132,7 @@ export const Card = ({ pokemon }: CardState) => {
       <Divider />
 
       <Link
-        fontSize="xs"
+        fontSize={{ base: "md" }}
         textDecorationColor="none"
         as={RouterLink}
         to={`/pokemon/${pokemon.id}`}

@@ -8,13 +8,18 @@ import { useEffect } from "react";
 export const NavBar = () => {
   const dispatch = useAppDispatch();
 
-  const defaultOption = localStorage.getItem("filter") || "A-Z";
+  const defaultFilter = localStorage.getItem("filter") || "EMPTY";
+  const defaultAmount = localStorage.getItem("amount") || "20";
 
   const { page } = useAppSelector((state) => state.pokemons);
 
-  const handleShowingChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const limit = Number(e.target.value);
-    dispatch(getPokemons(page, limit));
+  const handleShowingChange = ({
+    target,
+  }: React.ChangeEvent<HTMLSelectElement>) => {
+    localStorage.setItem("amount", target.value);
+    localStorage.setItem("limit", target.value);
+    const limit = target.value;
+    dispatch(getPokemons(limit, page));
   };
 
   const handleFilterCase = ({
@@ -33,30 +38,43 @@ export const NavBar = () => {
 
   return (
     <>
-      <Flex alignItems="center" gap="8" px="32" my="4">
+      <Flex
+        flexDirection={{ base: "column", md: "row" }}
+        alignItems="center"
+        justifyContent="space-between"
+        gap={{ base: "2", md: "8" }}
+        px={{ base: "6", md: "20", lg: "32" }}
+        my="4"
+      >
         <Select
-          w="200px"
+          w={{ base: "100%", md: "200px" }}
           size="sm"
           rounded="10"
           onChange={handleShowingChange}
-          defaultValue={"20"}
+          defaultValue={defaultAmount}
+          order={{ base: "2", md: "1" }}
         >
           <option value="10">Show 10 results</option>
           <option value="20">Show 20 results</option>
           <option value="50">Show 50 results</option>
         </Select>
-        <Spacer />
-        <Box w="350px">
+
+        <Box
+          w={{ base: "100%", md: "250px", lg: "350px" }}
+          order={{ base: "1", md: "2" }}
+        >
           <SearchInput />
         </Box>
-        <Spacer />
+
         <Select
-          w="200px"
+          w={{ base: "100%", md: "200px" }}
+          order={{ base: "3", md: "3" }}
           size="sm"
           rounded="10"
-          defaultValue={defaultOption}
+          defaultValue={defaultFilter}
           onChange={handleFilterCase}
         >
+          <option value="EMPTY">Filters</option>
           <option value="A-Z">From A-Z</option>
           <option value="Z-A">From Z-A</option>
           <option value="HEIGHT">By Height</option>

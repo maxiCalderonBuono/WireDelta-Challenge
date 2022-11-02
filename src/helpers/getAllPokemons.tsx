@@ -5,12 +5,17 @@ import {
   SinglePokemon,
 } from "../interfaces/allPokemonsResponse";
 
+interface EachPokemon {
+  totalAmount: number;
+  singlePokemonArray: SinglePokemon[];
+}
+
 export const getAllPokemons = async (
-  page: number,
-  limit: number
-): Promise<SinglePokemon[]> => {
+  limit: string,
+  page: string
+): Promise<EachPokemon> => {
   const resp = await pokemonApi.get<PokemonsResponse>(
-    `?limit=${limit}&offset=${page * limit}`
+    `?limit=${limit}&offset=${Number(page) * Number(limit)}`
   );
 
   const totalAmount = resp.data.count;
@@ -23,7 +28,7 @@ export const getAllPokemons = async (
 const getPokemon = async (
   initialList: Result[],
   totalAmount: number
-): Promise<SinglePokemon[]> => {
+): Promise<EachPokemon> => {
   const pokemon = initialList.map(async ({ url }) => {
     const id = url.split("/")[6];
 
@@ -40,7 +45,7 @@ const getPokemon = async (
 const getEachPokemon = (
   pokemonList: SinglePokemon[],
   totalAmount: number
-): SinglePokemon[] => {
+): EachPokemon => {
   const singlePokemonArray: SinglePokemon[] = pokemonList.map(
     ({
       id,
@@ -82,5 +87,5 @@ const getEachPokemon = (
     }
   );
 
-  return singlePokemonArray;
+  return { singlePokemonArray, totalAmount };
 };

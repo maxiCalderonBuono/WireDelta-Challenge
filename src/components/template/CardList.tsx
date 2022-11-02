@@ -16,16 +16,19 @@ export const CardList = () => {
     <Skeleton />
   ) : (
     <Grid
-      templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(4, 1fr)" }}
+      templateColumns={{
+        base: "repeat(1, 1fr)",
+        sm: "repeat(2, 1fr)",
+        md: "repeat(3, 1fr)",
+        xl: "repeat(4, 1fr)",
+      }}
       gap={6}
       className="animate__animated animate__fadeIn"
       px={{ base: "10", md: "20", lg: "32" }}
     >
       {sortAllPokemons(pokemons, searchValue, filter).map(
         (pokemon: SinglePokemon) => (
-          <Box key={pokemon.id}>
-            <Card pokemon={pokemon} />
-          </Box>
+          <Card pokemon={pokemon} key={pokemon.id} />
         )
       )}
     </Grid>

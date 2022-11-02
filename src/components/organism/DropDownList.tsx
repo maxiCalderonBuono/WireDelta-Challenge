@@ -6,8 +6,6 @@ import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 export const DropDownList = ({ data, name }) => {
   const [display, changeDisplay] = useState<boolean>(false);
 
-  console.log(data);
-
   const bg = useColorModeValue("orange.50", "gray.700");
   return (
     <Flex direction="column" gap="2">
@@ -23,8 +21,16 @@ export const DropDownList = ({ data, name }) => {
           {name}
         </Box>
       </Button>
-      <Box display={display ? "flex" : "none"}>
-        {data.map(({ ability }) => console.log(ability))}
+      <Box
+        display={display ? "flex" : "none"}
+        flexDirection="column"
+        bg={bg}
+        borderRadius="md"
+        p="3"
+      >
+        {data.map(({ ability }) => (
+          <p>{ability.name}</p>
+        ))}
       </Box>
     </Flex>
   );

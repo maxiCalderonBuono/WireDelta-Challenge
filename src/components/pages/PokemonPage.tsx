@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { ArrowLeftIcon } from "@chakra-ui/icons";
-import { Box, Flex, Image, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex, Image, useColorModeValue, Grid } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "../../interfaces/hook";
 import { ToggleColorMode } from "../atoms/ToggleColorMode";
 import { SinglePokemon } from "../../interfaces/allPokemonsResponse";
@@ -22,27 +22,36 @@ export const PokemonPage = () => {
     (pokemon: SinglePokemon) => pokemon.id === Number(id)
   );
 
-  useEffect(() => {
-    if (!pokemon) {
-      dispatch(getPokemons());
-    }
-  }, []);
-
   return isLoading ? (
     <h1>Cargando....</h1>
   ) : (
     <>
-      <Box display="flex" justifyContent="space-between" px="32" mt="10">
-        <Link to="/">
-          <Button
-            size="sm"
-            leftIcon={<ArrowLeftIcon />}
-            colorScheme="teal"
-            variant="outline"
-          >
-            Back
-          </Button>
-        </Link>
+      <Box
+        display="flex"
+        justifyContent="center"
+        px={{ base: "6", sm: "14", md: "20", lg: "32" }}
+        mt="10"
+        position="relative"
+      >
+        <Box
+          position="absolute"
+          left={{ base: "6", sm: "14", md: "20", lg: "32" }}
+        >
+          <Link to="/">
+            <Button
+              px={0}
+              size={{ base: "xs", sm: "sm" }}
+              leftIcon={<ArrowLeftIcon />}
+              colorScheme="teal"
+              variant={{ base: "ghost", md: "outline" }}
+            >
+              <Box as="p" display={{ base: "none", md: "block" }}>
+                Back
+              </Box>
+            </Button>
+          </Link>
+        </Box>
+
         <Image
           bg={bg}
           borderRadius="xl"
@@ -50,45 +59,115 @@ export const PokemonPage = () => {
           alt={`picture of ${pokemon.name}`}
           w="250px"
         />
-        <ToggleColorMode />
+
+        <Box
+          position="absolute"
+          right={{ base: "6", sm: "14", md: "20", lg: "32" }}
+        >
+          <ToggleColorMode />
+        </Box>
       </Box>
+
       <Box
         display="flex"
         flexDirection="column"
         justifyContent="space-center"
         w="100%"
-        px="32"
+        px={{ base: "6", sm: "14", md: "20", lg: "32" }}
       >
         <Box as={"h1"} fontWeight="bold" textAlign="center">
           {pokemon.name}
         </Box>
-        <Flex display="flex" justifyContent="space-between" gap="4">
-          <Box as={"p"}>
-            Height: <span>{pokemon.height}</span>
-          </Box>
-          <Box as={"p"}>
-            Weight: <span>{pokemon.weight}</span>
-          </Box>
-          <Box as={"p"}>
-            Base experience: <span>{pokemon.base_experience}</span>
-          </Box>
-          <Box as={"p"}>
-            Default: <span>{pokemon.is_default.toString()}</span>
-          </Box>
-          <Box as={"p"}>
-            Order: <span>{pokemon.order}</span>
-          </Box>
-          <Box>
-            Species: <span>{pokemon.species.name}</span>
-          </Box>
+        <Flex
+          display="flex"
+          flexDirection={{ base: "column", md: "row" }}
+          w="100%"
+          justifyContent="space-between"
+          alignItems="center"
+          gap="4"
+          my="4"
+        >
+          <Flex
+            gap="3"
+            justifyContent={{ base: "space-between" }}
+            w={{ base: "100%", md: "auto" }}
+          >
+            <Box as={"p"} fontWeight="bold">
+              Height:
+            </Box>
+            <span>{pokemon.height}</span>
+          </Flex>
+          <Flex
+            gap="3"
+            justifyContent={{ base: "space-between" }}
+            w={{ base: "100%", md: "auto" }}
+          >
+            <Box as={"p"} fontWeight="bold">
+              Weight:
+            </Box>
+            <span>{pokemon.weight}</span>
+          </Flex>
+          <Flex
+            gap="3"
+            justifyContent={{ base: "space-between" }}
+            w={{ base: "100%", md: "auto" }}
+          >
+            <Box as={"p"} fontWeight="bold">
+              Base experience:
+            </Box>
+            <span>{pokemon.base_experience}</span>
+          </Flex>
+          <Flex
+            gap="3"
+            justifyContent={{ base: "space-between" }}
+            w={{ base: "100%", md: "auto" }}
+          >
+            <Box as={"p"} fontWeight="bold">
+              Default:
+            </Box>
+            <span>{pokemon.is_default.toString()}</span>
+          </Flex>
+          <Flex
+            gap="3"
+            justifyContent={{ base: "space-between" }}
+            w={{ base: "100%", md: "auto" }}
+          >
+            <Box as={"p"} fontWeight="bold">
+              Order:
+            </Box>
+            <span>{pokemon.order}</span>
+          </Flex>
+          <Flex
+            gap="3"
+            justifyContent={{ base: "space-between" }}
+            w={{ base: "100%", md: "auto" }}
+          >
+            <Box as={"p"} fontWeight="bold">
+              Species:
+            </Box>
+            <span>{pokemon.species.name}</span>
+          </Flex>
         </Flex>
         <Flex display="flex" flexDirection="column" gap="3">
           <DropDownList data={pokemon.abilities} name={"Abilities"} />
         </Flex>
       </Box>
-      <Flex flexDirection="column" alignItems="center" gap="4">
-        <Box as={"h1"}>You might also like</Box>
-        <Flex gap="6" w="100%" justifyContent="space-evenly" mb="5">
+      <Flex flexDirection="column" alignItems="center" gap="4" my="8">
+        <Box as={"h1"} fontWeight="bold">
+          You might also like
+        </Box>
+        <Grid
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            sm: "repeat(2, 1fr)",
+            md: "repeat(3, 1fr)",
+          }}
+          gap={6}
+          w="100%"
+          justifyContent="center"
+          className="animate__animated animate__fadeIn"
+          px={{ base: "10", md: "20", lg: "32" }}
+        >
           {pokemons
             .filter((pokemon) => pokemon.id !== Number(id))
             .slice(0, 3)
@@ -97,7 +176,7 @@ export const PokemonPage = () => {
                 <Card pokemon={pokemon} />
               </Box>
             ))}
-        </Flex>
+        </Grid>
       </Flex>
     </>
   );

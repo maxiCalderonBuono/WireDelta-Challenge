@@ -7,7 +7,13 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getPokemons());
+    const page = localStorage.getItem("next-page");
+    const limit = localStorage.getItem("limit");
+    if (!page && !limit) {
+      dispatch(getPokemons());
+    } else {
+      dispatch(getPokemons(limit, page));
+    }
   }, []);
 
   return (

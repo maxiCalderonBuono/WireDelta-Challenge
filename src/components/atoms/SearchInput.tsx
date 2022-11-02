@@ -26,7 +26,7 @@ export const SearchInput = () => {
   };
 
   return (
-    <InputGroup size="sm">
+    <InputGroup size="sm" w="100%">
       <InputLeftElement
         pointerEvents="none"
         children={<SearchIcon color="gray.300" />}
