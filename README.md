@@ -6,6 +6,10 @@
 
 ## Go to [Pokedelta](https://pokedelta.netlify.app/)
 
+# + :camera: Snaps!
+
+
+
 ## :muscle: Development
 
 ### This project was developed using:
@@ -18,7 +22,7 @@
 
 ## Install
 
-    $ git clone https://github.com/ORG/PROJECT.git
+    $ git clone https://github.com/maxiCalderonBuono/WireDelta-Challenge.git
     $ cd PROJECT
     $ npm install
 
