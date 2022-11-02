@@ -28,6 +28,19 @@ export interface Ability {
   slot: number;
 }
 
+export interface Types {
+  slot: number;
+  type: {
+    name: string;
+    url: string;
+  };
+}
+
+export interface Forms {
+  name: string;
+  url: string;
+}
+
 export interface Species {
   name: string;
   url: string;

@@ -1,12 +1,16 @@
 import { SinglePokemon } from "../interfaces/allPokemonsResponse";
-export const sortAllPokemons = (pokemons, search, filter) => {
+export const sortAllPokemons = (
+  pokemons: SinglePokemon[],
+  search: string,
+  filter: string
+) => {
   switch (filter) {
     case "A-Z":
       return pokemons
         .filter((pokemon: SinglePokemon) =>
           pokemon.name.includes(search.toUpperCase())
         )
-        .sort(function (a, b) {
+        .sort(function (a: SinglePokemon, b: SinglePokemon) {
           if (a.name < b.name) {
             return -1;
           }
@@ -21,7 +25,7 @@ export const sortAllPokemons = (pokemons, search, filter) => {
         .filter((pokemon: SinglePokemon) =>
           pokemon.name.includes(search.toUpperCase())
         )
-        .sort(function (a, b) {
+        .sort(function (a: SinglePokemon, b: SinglePokemon) {
           if (a.name > b.name) {
             return -1;
           }
@@ -36,14 +40,14 @@ export const sortAllPokemons = (pokemons, search, filter) => {
         .filter((pokemon: SinglePokemon) =>
           pokemon.name.includes(search.toUpperCase())
         )
-        .sort((a, b) => a.weight - b.weight);
+        .sort((a: SinglePokemon, b: SinglePokemon) => a.weight - b.weight);
 
     case "HEIGHT":
       return pokemons
         .filter((pokemon: SinglePokemon) =>
           pokemon.name.includes(search.toUpperCase())
         )
-        .sort((a, b) => a.height - b.height);
+        .sort((a: SinglePokemon, b: SinglePokemon) => a.height - b.height);
 
     default:
       return pokemons.filter((pokemon: SinglePokemon) =>

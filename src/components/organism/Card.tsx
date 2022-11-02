@@ -65,6 +65,7 @@ export const Card = ({ pokemon }: CardState) => {
           <Box display="flex" justifyContent="center" gap="2" w="100%">
             {types.map(({ type }) => (
               <Badge
+                key={type.name}
                 borderRadius="full"
                 px="2"
                 colorScheme={colorSchema[type.name]}
@@ -87,7 +88,7 @@ export const Card = ({ pokemon }: CardState) => {
           </Box>
         </Box>
       </Box>
-      <Box fontSize="8px" py="2" px="6" w="100%" minH="100px">
+      <Box fontSize="8px" py="2" px="6" w="100%" minH="120px">
         <Box
           display="flex"
           justifyContent="space-between"
@@ -124,7 +125,9 @@ export const Card = ({ pokemon }: CardState) => {
             fontSize={{ base: "14" }}
           >
             {abilities.map(({ ability }) => (
-              <Box as="p">{ability.name}</Box>
+              <Box as="p" key={ability.name}>
+                {ability.name}
+              </Box>
             ))}
           </Box>
         </Box>

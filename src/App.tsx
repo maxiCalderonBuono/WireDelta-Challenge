@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { getPokemons } from "./store/slices/pokemon/thunks";
 import { useAppDispatch } from "./interfaces/hook";
 import { AppRouter } from "./router/AppRouter";
+import { AppDispatch } from "./store/store";
 
 function App() {
   const dispatch = useAppDispatch();

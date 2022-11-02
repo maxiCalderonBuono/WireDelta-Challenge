@@ -6,8 +6,8 @@ export interface PokemonState {
   page: string;
   limit: string;
   total: number;
-  searchValue?: string;
-  filter?: string;
+  searchValue: string;
+  filter: string;
   pokemons: SinglePokemon[];
   isLoading?: boolean;
 }

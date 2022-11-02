@@ -4,4 +4,4 @@ export * from "./atoms/Controllers";
 export * from "./organism/NavBar";
 export * from "./organism/SubMenu";
 export * from "./organism/Card";
-export * from "./organism/Skeleton";
+export * from "./organism/Loader";

@@ -1,9 +1,9 @@
-import { Grid, Box } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 import { Card } from "../organism/Card";
-import { Skeleton } from "../organism/Skeleton";
 import { SinglePokemon } from "../../interfaces";
 import { useAppSelector } from "../../interfaces/hook";
-import { sortAllPokemons } from "../../helpers/sortAllPokemons";
+import { sortAllPokemons } from "../../helpers";
+import { Loader } from "../organism";
 
 import "animate.css";
 
@@ -13,7 +13,7 @@ export const CardList = () => {
   );
 
   return isLoading ? (
-    <Skeleton />
+    <Loader />
   ) : (
     <Grid
       templateColumns={{
@@ -27,8 +27,8 @@ export const CardList = () => {
       px={{ base: "10", md: "20", lg: "32" }}
     >
       {sortAllPokemons(pokemons, searchValue, filter).map(
-        (pokemon: SinglePokemon) => (
-          <Card pokemon={pokemon} key={pokemon.id} />
+        (pokemon: SinglePokemon, index) => (
+          <Card pokemon={pokemon} key={index} />
         )
       )}
     </Grid>

@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { Button } from "@chakra-ui/button";
-import { Box, useColorModeValue, Flex, Badge } from "@chakra-ui/react";
+import { Box, useColorModeValue, Flex, Grid } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
+import { GameIndex } from "../../interfaces/allPokemonsResponse";
 
-export const DropDownList = ({ data, name }) => {
+interface GameIndexProps {
+  data: GameIndex[];
+}
+
+export const GameIndicesMenu = ({ data }: GameIndexProps) => {
   const [display, changeDisplay] = useState<boolean>(false);
 
   const bg = useColorModeValue("orange.50", "gray.700");
@@ -18,7 +23,7 @@ export const DropDownList = ({ data, name }) => {
         onClick={() => changeDisplay((prev) => !prev)}
       >
         <Box as={"p"} w="100%">
-          {name}
+          Game Indices
         </Box>
       </Button>
       <Box
@@ -28,9 +33,22 @@ export const DropDownList = ({ data, name }) => {
         borderRadius="md"
         p="3"
       >
-        {data.map(({ ability }) => (
-          <p>{ability.name}</p>
-        ))}
+        <Grid
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            sm: "repeat(2, 1fr)",
+            md: "repeat(2, 1fr)",
+            xl: "repeat(3, 1fr)",
+          }}
+        >
+          {data.map(({ game_index, version }) => (
+            <Box display="flex" gap="4">
+              <p>
+                Game index: {game_index} - Version: {version.name}{" "}
+              </p>
+            </Box>
+          ))}
+        </Grid>
       </Box>
     </Flex>
   );

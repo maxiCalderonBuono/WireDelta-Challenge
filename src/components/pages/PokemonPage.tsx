@@ -4,11 +4,16 @@ import { Box, Flex, Image, useColorModeValue, Grid } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "../../interfaces/hook";
 import { ToggleColorMode } from "../atoms/ToggleColorMode";
 import { SinglePokemon } from "../../interfaces/allPokemonsResponse";
-import { DropDownList } from "../organism/DropDownList";
 import { Link, useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { getPokemons } from "../../store/slices/pokemon/thunks";
-import { Card } from "../organism";
+import { Card, Loader } from "../organism";
+import {
+  AbilityMenu,
+  FormMenu,
+  GameIndicesMenu,
+  MovesMenu,
+  StatsMenu,
+  TypesMenu,
+} from "../template";
 
 export const PokemonPage = () => {
   const { pokemons, isLoading } = useAppSelector((state) => state.pokemons);
@@ -23,7 +28,7 @@ export const PokemonPage = () => {
   );
 
   return isLoading ? (
-    <h1>Cargando....</h1>
+    <Loader />
   ) : (
     <>
       <Box
@@ -88,7 +93,7 @@ export const PokemonPage = () => {
           my="4"
         >
           <Flex
-            gap="3"
+            gap={{ md: "1", lg: "3" }}
             justifyContent={{ base: "space-between" }}
             w={{ base: "100%", md: "auto" }}
           >
@@ -98,7 +103,7 @@ export const PokemonPage = () => {
             <span>{pokemon.height}</span>
           </Flex>
           <Flex
-            gap="3"
+            gap={{ md: "1", lg: "3" }}
             justifyContent={{ base: "space-between" }}
             w={{ base: "100%", md: "auto" }}
           >
@@ -108,7 +113,7 @@ export const PokemonPage = () => {
             <span>{pokemon.weight}</span>
           </Flex>
           <Flex
-            gap="3"
+            gap={{ md: "1", lg: "3" }}
             justifyContent={{ base: "space-between" }}
             w={{ base: "100%", md: "auto" }}
           >
@@ -118,7 +123,7 @@ export const PokemonPage = () => {
             <span>{pokemon.base_experience}</span>
           </Flex>
           <Flex
-            gap="3"
+            gap={{ md: "1", lg: "3" }}
             justifyContent={{ base: "space-between" }}
             w={{ base: "100%", md: "auto" }}
           >
@@ -128,7 +133,7 @@ export const PokemonPage = () => {
             <span>{pokemon.is_default.toString()}</span>
           </Flex>
           <Flex
-            gap="3"
+            gap={{ md: "1", lg: "3" }}
             justifyContent={{ base: "space-between" }}
             w={{ base: "100%", md: "auto" }}
           >
@@ -138,7 +143,7 @@ export const PokemonPage = () => {
             <span>{pokemon.order}</span>
           </Flex>
           <Flex
-            gap="3"
+            gap={{ md: "1", lg: "3" }}
             justifyContent={{ base: "space-between" }}
             w={{ base: "100%", md: "auto" }}
           >
@@ -149,7 +154,12 @@ export const PokemonPage = () => {
           </Flex>
         </Flex>
         <Flex display="flex" flexDirection="column" gap="3">
-          <DropDownList data={pokemon.abilities} name={"Abilities"} />
+          <AbilityMenu data={pokemon.abilities} />
+          <FormMenu data={pokemon.forms} />
+          <TypesMenu data={pokemon.types} />
+          <GameIndicesMenu data={pokemon.game_indices} />
+          <StatsMenu data={pokemon.stats} />
+          <MovesMenu data={pokemon.moves} />
         </Flex>
       </Box>
       <Flex flexDirection="column" alignItems="center" gap="4" my="8">
