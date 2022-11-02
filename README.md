@@ -8,7 +8,7 @@
 
 # + :camera: Snaps!
 
-![Home](https://res.cloudinary.com/dvqlenul5/image/upload/v1667418916/Pokedetail_aajxsa.png)
+![Home](https://res.cloudinary.com/dvqlenul5/image/upload/v1667418886/Home_vn99kh.png)
 ![PokemonDetail](https://res.cloudinary.com/dvqlenul5/image/upload/v1667418916/Pokedetail_aajxsa.png)
 
 ## :muscle: Development
