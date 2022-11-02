@@ -4,6 +4,7 @@ import { Button } from "@chakra-ui/button";
 import { useAppDispatch, useAppSelector } from "../../interfaces/hook";
 import { useState } from "react";
 import { getPokemons } from "../../store/slices/pokemon/thunks";
+import { getLocalStorage } from "../../helpers/getLocalStorage";
 
 export const Controllers = () => {
   const bg = useColorModeValue("transparent", "whiteAlpha-200");
@@ -22,7 +23,7 @@ export const Controllers = () => {
     setPage(nextPage);
     localStorage.setItem("next-page", JSON.stringify(nextPage));
     localStorage.setItem("limit", limit);
-    dispatch(getPokemons(limit, nextPage));
+    dispatch(getPokemons(limit, nextPage.toString()));
   };
 
   const handleNextPage = () => {
@@ -31,7 +32,7 @@ export const Controllers = () => {
     setPage(nextPage);
     localStorage.setItem("next-page", JSON.stringify(nextPage));
     localStorage.setItem("limit", limit);
-    dispatch(getPokemons(limit, nextPage));
+    dispatch(getPokemons(limit, nextPage.toString()));
   };
 
   return (

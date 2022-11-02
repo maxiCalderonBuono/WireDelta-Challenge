@@ -42,7 +42,7 @@ export const StatsMenu = ({ data }: StatProps) => {
           }}
         >
           {data.map(({ base_stat, stat, effort }) => (
-            <Box display="flex">
+            <Box key={stat.name} display="flex">
               Name: {stat.name} - Effort: {effort} -Base Stat: {base_stat}
             </Box>
           ))}

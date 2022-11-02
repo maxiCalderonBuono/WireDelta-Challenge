@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import { getPokemons } from "./store/slices/pokemon/thunks";
 import { useAppDispatch } from "./interfaces/hook";
 import { AppRouter } from "./router/AppRouter";
-import { AppDispatch } from "./store/store";
+import { getLocalStorage } from "./helpers/getLocalStorage";
 
 function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const page = localStorage.getItem("next-page");
-    const limit = localStorage.getItem("limit");
+    const page = getLocalStorage("next-page");
+    const limit = getLocalStorage("limit");
     if (!page && !limit) {
       dispatch(getPokemons());
     } else {

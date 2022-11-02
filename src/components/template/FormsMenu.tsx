@@ -34,7 +34,7 @@ export const FormMenu = ({ data }: FormsProps) => {
         p="3"
       >
         {data.map(({ name }) => (
-          <p>{name}</p>
+          <p key={name}>{name}</p>
         ))}
       </Box>
     </Flex>

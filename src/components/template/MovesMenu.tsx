@@ -42,7 +42,7 @@ export const MovesMenu = ({ data }: MovesProps) => {
           }}
         >
           {data.map(({ move, version_group_details }) => (
-            <Box>
+            <Box key={move.name}>
               <Box display="flex" gap="4">
                 <Box>{move.name}</Box>
               </Box>

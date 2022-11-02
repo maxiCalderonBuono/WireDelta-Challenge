@@ -42,7 +42,7 @@ export const TypesMenu = ({ data }: TypesProps) => {
           }}
         >
           {data.map(({ type }) => (
-            <p>{type.name}</p>
+            <p key={type.name}>{type.name}</p>
           ))}
         </Grid>
       </Box>

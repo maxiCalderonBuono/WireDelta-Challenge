@@ -4,6 +4,7 @@ import { Box, Divider, Flex, Select, Spacer } from "@chakra-ui/react";
 import { SearchInput } from "../index";
 import { getPokemons, onFilterOptions } from "../../store/slices/pokemon";
 import { useEffect } from "react";
+import { getLocalStorage } from "../../helpers/getLocalStorage";
 
 export const NavBar = () => {
   const dispatch = useAppDispatch();

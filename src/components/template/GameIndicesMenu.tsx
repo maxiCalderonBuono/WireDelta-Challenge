@@ -42,7 +42,7 @@ export const GameIndicesMenu = ({ data }: GameIndexProps) => {
           }}
         >
           {data.map(({ game_index, version }) => (
-            <Box display="flex" gap="4">
+            <Box display="flex" gap="4" key={version.name}>
               <p>
                 Game index: {game_index} - Version: {version.name}{" "}
               </p>

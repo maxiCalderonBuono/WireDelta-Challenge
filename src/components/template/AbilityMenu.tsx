@@ -33,8 +33,8 @@ export const AbilityMenu = ({ data }: AbilityProps) => {
         borderRadius="md"
         p="3"
       >
-        {data.map(({ ability }) => (
-          <p>{ability.name}</p>
+        {data.map(({ ability }, index) => (
+          <p key={index}>{ability.name}</p>
         ))}
       </Box>
     </Flex>
